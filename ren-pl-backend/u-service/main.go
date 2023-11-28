@@ -1,15 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
+	"ren-pl-backend/routes"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, u-service!")
-	})
-
-	fmt.Println("Server is running on http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	router := routes.SetupRouter()
+	http.ListenAndServe(":8080", router)
 }
